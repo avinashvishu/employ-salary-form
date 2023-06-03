@@ -1,0 +1,44 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="style.css">
+    <title>Employ Form</title>
+</head>
+
+<body>
+    <div class="container">
+        <Form autocomplete="off" method="post" name="google-sheet">
+            <h3>
+                <center>Employ Salary Form</center>
+            </h3>
+            <input type="text" placeholder="Type Your Name Here" name="name">
+            <input type="email" placeholder="Type Your email Here" name="email">
+            <input type="text" placeholder="Type Your Designation Here" name="designation">
+            <input type="text" placeholder="Type Your Salary Here" name="salary">
+            <label for="Gender"><b>Gender</b></label><br> Male
+            <input type="radio" name="gender" value="male"><br> Female
+            <input type="radio" name="gender" value="female">
+            <button type="submit" name="submit">submit</button>
+        </Form>
+    </div>
+    <script>
+        const scriptURL = 'https://script.google.com/macros/s/AKfycbxweQ4p-E001MvHAoutxV8ASFXtb2ijsvaeaT0vmxK23A8REmtf0c2Gu-xKh79Vv3_80g/exec'
+        const form = document.forms['google-sheet']
+
+        form.addEventListener('submit', e => {
+            e.preventDefault()
+            fetch(scriptURL, {
+                    method: 'POST',
+                    body: new FormData(form)
+                })
+                .then(response => alert("Thanks for Contacting us..! We Will Contact You Soon..."))
+                .catch(error => console.error('Error!', error.message))
+        })
+    </script>
+</body>
+
+</html>
